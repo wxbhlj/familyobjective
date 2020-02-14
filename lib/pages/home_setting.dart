@@ -8,6 +8,7 @@ import 'package:my_family/common/global_event.dart';
 import 'package:my_family/common/http_util.dart';
 import 'package:my_family/common/routers.dart';
 import 'package:my_family/models/member.dart';
+import 'package:my_family/models/user.dart';
 import 'package:my_family/states/user_model.dart';
 import 'package:my_family/widgets/dialog.dart';
 import 'package:provider/provider.dart';
@@ -51,6 +52,12 @@ class _SettingPageState extends State<SettingPage> {
         val['data'].forEach((v) {
           Member member = Member.fromJson(v);
           list.add(member);
+          if(member.userId == Global.profile.user.userId) {
+            User user = Global.profile.user;
+            user.nick = member.nick;
+            user.familyRole = member.familyRole;
+            Provider.of<UserModel>(context, listen: false).user = user;
+          }
         });
         Provider.of<UserModel>(context, listen: false).members = list;
 

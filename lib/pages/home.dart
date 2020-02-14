@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_family/common/global_event.dart';
+import 'package:my_family/common/routers.dart';
 import 'package:my_family/pages/home_function.dart';
 import 'package:my_family/pages/home_index.dart';
 import 'package:my_family/pages/home_setting.dart';
@@ -80,6 +81,7 @@ class _HomePageState extends State<HomePage> {
     return FloatingActionButton(
       onPressed: () async {
         //Routers.router.navigateTo(context, Routers.customerTopicNew);
+        Routers.router.navigateTo(context, Routers.newObjectivePage);
       },
       //backgroundColor: Colors.green,
       tooltip: '新建目标',

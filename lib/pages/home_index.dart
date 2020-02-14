@@ -65,6 +65,7 @@ class _IndexPageState extends State<IndexPage> with SingleTickerProviderStateMix
         controller: _tabController,
           children: _tabViews(Global.profile.members),
         ),
+        
     );
   }
 
