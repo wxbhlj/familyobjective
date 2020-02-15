@@ -129,7 +129,7 @@ class _SettingPageState extends State<SettingPage> {
           border: Border(bottom: BorderSide(width: 1, color: Colors.black12))),
       child: ListTile(
         leading: Icon(
-          Icons.colorize,
+          Icons.color_lens,
           color: Theme.of(context).accentColor,
         ),
         title: Text('主题颜色'),
