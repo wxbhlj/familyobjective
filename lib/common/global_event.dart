@@ -4,6 +4,8 @@ const String EVENT_MEMBER_CHANGED = "EVENT_MEMBER_CHANGED";
 
 const String EVENT_TOKEN_ERROR = "EVENT_TOKEN_ERROR";
 
+const String EVENT_REFRESH_OBJECTIVELIST = "EVENT_REFRESH_OBJECTIVELIST";
+
 class GlobalEventBus{
   EventBus event;
   factory GlobalEventBus() => _getInstance();
@@ -32,11 +34,16 @@ class GlobalEventBus{
     print("fire new cloud message ");
     _getInstance().event.fire(CommonEventWithType(EVENT_TOKEN_ERROR));
   }
+  static void fireRefreshObjectiveList(int userId) {
+    print("fire new cloud message ");
+    _getInstance().event.fire(CommonEventWithType(EVENT_REFRESH_OBJECTIVELIST, userId: userId));
+  }
  
 }
 
 class CommonEventWithType {
   String eventType; //topic or message
+  int userId;
 
-  CommonEventWithType(this.eventType);
+  CommonEventWithType(this.eventType, {this.userId});
 }

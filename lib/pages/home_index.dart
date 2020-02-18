@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_family/common/global.dart';
+import 'package:my_family/common/global_event.dart';
 import 'package:my_family/models/member.dart';
+import 'package:my_family/pages/objective/objective_list.dart';
 
 class IndexPage extends StatefulWidget {
   @override
@@ -10,11 +12,13 @@ class IndexPage extends StatefulWidget {
 class _IndexPageState extends State<IndexPage> with SingleTickerProviderStateMixin{
 
   TabController _tabController;
+  List<ObjectiveListPage> listViews;
 
   @override
   void initState() {
     List<Member> members = Global.profile.members;
     _tabController = new TabController(vsync: this, length: members.length == 0?1:members.length);
+    listViews = _tabViews(Global.profile.members);
     super.initState();
   }
 
@@ -39,12 +43,12 @@ class _IndexPageState extends State<IndexPage> with SingleTickerProviderStateMix
     return tabs;
   }
 
-  List<Widget> _tabViews(List<Member> members) {
-    List<Widget> tabs = List();
-    tabs.add(Center(child: new Text('我自己')));
+  List<ObjectiveListPage> _tabViews(List<Member> members) {
+    List<ObjectiveListPage> tabs = List();
+    tabs.add(ObjectiveListPage(Global.profile.user.userId));
     for(Member m in members) {
       if(m.userId != Global.profile.user.userId) {
-        tabs.add(Center(child: new Text(m.nick)));
+        tabs.add(ObjectiveListPage(m.userId));
       }
     }
     return tabs;
@@ -54,16 +58,24 @@ class _IndexPageState extends State<IndexPage> with SingleTickerProviderStateMix
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('目标'),
+        title: Text('家庭目标'),
         bottom: new TabBar(
           tabs: _tabs(Global.profile.members),
           controller: _tabController,
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.refresh),
+            onPressed: (){
+              GlobalEventBus.fireRefreshObjectiveList(listViews[_tabController.index].userId);
+            },
+          )
+        ],
       ),
       
       body: new TabBarView(
         controller: _tabController,
-          children: _tabViews(Global.profile.members),
+          children: listViews,
         ),
         
     );

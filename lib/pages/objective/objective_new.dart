@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:my_family/common/global.dart';
+import 'package:my_family/common/global_event.dart';
 import 'package:my_family/common/http_util.dart';
 import 'package:my_family/models/member.dart';
 
@@ -282,7 +283,7 @@ class _NewObjectivePageState extends State<NewObjectivePage> {
             margin: EdgeInsets.only(top: 10),
             child: Row(
               children: <Widget>[
-                Text(' 每完成一次打卡奖励'),
+                Text(' 每完成一次打卡，奖励金币'),
                 Expanded(
                   child: TextField(
                     keyboardType: TextInputType.number,
@@ -296,7 +297,7 @@ class _NewObjectivePageState extends State<NewObjectivePage> {
                   ),
                 ),
                 Text(
-                  '元',
+                  '个',
                   style: TextStyle(),
                 ),
               ],
@@ -356,6 +357,7 @@ class _NewObjectivePageState extends State<NewObjectivePage> {
             if (val['code'] == '10000') {
               Fluttertoast.showToast(
                   msg: '新建成功', gravity: ToastGravity.CENTER);
+              GlobalEventBus.fireRefreshObjectiveList(ownerId);
               Navigator.of(context).pop();
             } else {
               Fluttertoast.showToast(

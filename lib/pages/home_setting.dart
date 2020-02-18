@@ -52,7 +52,7 @@ class _SettingPageState extends State<SettingPage> {
         val['data'].forEach((v) {
           Member member = Member.fromJson(v);
           list.add(member);
-          if(member.userId == Global.profile.user.userId) {
+          if (member.userId == Global.profile.user.userId) {
             User user = Global.profile.user;
             user.nick = member.nick;
             user.familyRole = member.familyRole;
@@ -94,7 +94,7 @@ class _SettingPageState extends State<SettingPage> {
       ),
       body: Column(
         children: <Widget>[
-          _topHeader(),
+          //_topHeader(),
           _themeColor(),
           _homeMember(),
           Divider(),
@@ -104,15 +104,12 @@ class _SettingPageState extends State<SettingPage> {
               child: _homeMemberList(),
             ),
           ),
-        
         ],
       ),
     );
   }
 
   Widget _topHeader() {
-    String nick = Global.profile.user != null ? Global.profile.user.nick : "";
-
     return Container(
       width: ScreenUtil().setWidth(750),
       padding: EdgeInsets.all(0),
@@ -148,14 +145,16 @@ class _SettingPageState extends State<SettingPage> {
       width: ScreenUtil().setWidth(750),
       child: Row(
         children: <Widget>[
-          Expanded(child: Text(
-            '家庭成员:',
-            style: TextStyle(fontSize: 16),
-          ),),
+          Expanded(
+            child: Text(
+              '家庭成员:',
+              style: TextStyle(fontSize: 16),
+            ),
+          ),
           FlatButton.icon(
             onPressed: () async {
               Routers.router
-              .navigateTo(context, Routers.addMemeberPage, replace: false);
+                  .navigateTo(context, Routers.addMemeberPage, replace: false);
             },
             //backgroundColor: Colors.green,
             label: Text('添加'),
@@ -174,7 +173,10 @@ class _SettingPageState extends State<SettingPage> {
       itemCount: members.length,
       itemBuilder: (BuildContext context, int pos) {
         return ListTile(
-          leading: _getMemberHeader(members[pos]),
+          leading: Container(
+            child: _getMemberHeader(members[pos]),
+            height: ScreenUtil().setHeight(64),
+          ),
           title: Text(members[pos].nick),
           trailing: Icon(Icons.arrow_right),
           onTap: () {
@@ -188,7 +190,7 @@ class _SettingPageState extends State<SettingPage> {
         );
       },
       separatorBuilder: (BuildContext context, int pos) {
-        return Divider();
+        return Divider(height: 0,);
       },
     );
   }
@@ -204,6 +206,4 @@ class _SettingPageState extends State<SettingPage> {
       return Image.asset('images/girl.png');
     }
   }
-
-
 }

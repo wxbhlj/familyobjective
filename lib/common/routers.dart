@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
 import 'package:my_family/pages/home.dart';
 import 'package:my_family/pages/login.dart';
-import 'package:my_family/pages/objective/new_objective.dart';
+import 'package:my_family/pages/objective/objective_new.dart';
+import 'package:my_family/pages/objective/objective_sign.dart';
 import 'package:my_family/pages/setting/add_member.dart';
 import 'package:my_family/pages/setting/init_setting.dart';
 import 'package:my_family/pages/setting/theme_setting.dart';
@@ -18,6 +19,7 @@ class Routers {
   static String themeSettingPage = '/themeSettingPage';
   static String addMemeberPage = '/addMemeberPage';
   static String newObjectivePage = '/newObjectivePage';
+  static String objectiveSignPage = '/objectiveSignPage';
 
  
   static void configRoutes(Router router) {
@@ -31,6 +33,8 @@ class Routers {
     router.define(initSettingPage, handler:_buildHandler(InitSettingPage()));
     router.define(themeSettingPage, handler:_buildHandler(ThemeSettingPage()));
     router.define(newObjectivePage, handler:_buildHandler(NewObjectivePage()));
+    router.define(objectiveSignPage, handler:_buildHandler(ObjectiveSignPage()));
+    
     
 
     router.define(addMemeberPage, handler:Handler(

@@ -15,7 +15,7 @@ const _themes = <MaterialColor>[
 ];
 
 class Global {
-  static SharedPreferences _prefs;
+  static SharedPreferences prefs;
 
   static Profile profile = Profile();
   // 可选的主题列表
@@ -27,9 +27,9 @@ class Global {
   //初始化全局信息，会在APP启动时执行
   static Future init() async {
 
-    _prefs = await SharedPreferences.getInstance();
+    prefs = await SharedPreferences.getInstance();
 
-    var _profile = _prefs.getString("_profile");
+    var _profile = prefs.getString("_profile");
     if (_profile != null) {
  
       try {
@@ -42,5 +42,5 @@ class Global {
   }
 
   static saveProfile() =>
-      _prefs.setString("_profile", jsonEncode(profile.toJson()));
+      prefs.setString("_profile", jsonEncode(profile.toJson()));
 }
