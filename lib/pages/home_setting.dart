@@ -25,7 +25,8 @@ class _SettingPageState extends State<SettingPage> {
 
   @override
   void initState() {
-    _getListMember();
+    //_getListMember();
+    members = Provider.of<UserModel>(context, listen: false).members;
     _eventSubscription =
         GlobalEventBus().event.on<CommonEventWithType>().listen((event) {
       print("C onEvent:" + event.eventType);

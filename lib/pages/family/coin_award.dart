@@ -48,7 +48,7 @@ class _CoinAwardPageState extends State<CoinAwardPage> {
         children: <Widget>[
           Row(
             children: <Widget>[
-              Icon(Icons.timer, color: Theme.of(context).accentColor),
+              Icon(Icons.people, color: Theme.of(context).accentColor),
               Text(
                 ' 奖励给谁',
                 style: TextStyle(fontWeight: FontWeight.w800),
@@ -94,7 +94,7 @@ class _CoinAwardPageState extends State<CoinAwardPage> {
         children: <Widget>[
           Row(
             children: <Widget>[
-              Icon(Icons.my_location, color: Theme.of(context).accentColor),
+              Icon(Icons.insert_comment, color: Theme.of(context).accentColor),
               Text(
                 ' 奖励原因',
                 style: TextStyle(fontWeight: FontWeight.w800),
@@ -119,7 +119,7 @@ class _CoinAwardPageState extends State<CoinAwardPage> {
         children: <Widget>[
           Row(
             children: <Widget>[
-              Icon(Icons.my_location, color: Theme.of(context).accentColor),
+              Icon(Icons.monetization_on, color: Theme.of(context).accentColor),
               Text(
                 ' 金币数量',
                 style: TextStyle(fontWeight: FontWeight.w800),

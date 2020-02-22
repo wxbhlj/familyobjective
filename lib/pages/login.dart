@@ -23,6 +23,7 @@ class _LoginPageState extends State<LoginPage> {
       TextEditingController.fromValue(TextEditingValue(text: ''));
   final TextEditingController _pwdcontroller =
       TextEditingController.fromValue(TextEditingValue(text: ''));
+  FocusNode _pwdFocusNode = FocusNode();
 
   Timer _countdownTimer;
   String _codeCountdownStr = '获取验证码';
@@ -93,6 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                 .then((val) {
               if (val['code'] == '10000') {
                 reGetCountdown();
+                FocusScope.of(context).requestFocus(_pwdFocusNode);
               } else {
                 Fluttertoast.showToast(
                     msg: val['message'], gravity: ToastGravity.CENTER);
@@ -135,7 +137,20 @@ class _LoginPageState extends State<LoginPage> {
       child: Stack(
         alignment: Alignment(1, 1),
         children: <Widget>[
-          buildInput(_pwdcontroller, Icons.lock_outline, '验证码', false),
+          
+          Row(
+            children: <Widget>[
+              buildIcon(Icons.lock_outline),
+              Expanded(
+                child: TextField(
+                    keyboardType: TextInputType.text,
+                    controller: _pwdcontroller,
+                    focusNode: _pwdFocusNode,
+                    decoration: InputDecoration(hintText: '验证码'),
+                    obscureText: false),
+              ),
+            ],
+          ),
           buildClearButton(_pwdcontroller),
         ],
       ),
@@ -162,7 +177,6 @@ class _LoginPageState extends State<LoginPage> {
                 .then((val) {
               print(val);
               if (val['code'] == '10000') {
-
                 List<Member> list = new List<Member>();
                 val['data']['familyMembers'].forEach((v) {
                   Member member = Member.fromJson(v);
@@ -174,9 +188,8 @@ class _LoginPageState extends State<LoginPage> {
                 Provider.of<UserModel>(context, listen: false).user = user;
                 if (user.familyRole == null || user.familyRole.length < 2) {
                   //未设置家庭信息
-                  Routers.router
-                      .navigateTo(context, Routers.initSettingPage, replace: true);
-
+                  Routers.router.navigateTo(context, Routers.initSettingPage,
+                      replace: true);
                 } else {
                   Routers.router
                       .navigateTo(context, Routers.homePage, replace: true);

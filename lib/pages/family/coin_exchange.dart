@@ -49,7 +49,7 @@ class _CoinExchangePageState extends State<CoinExchangePage> {
         children: <Widget>[
           Row(
             children: <Widget>[
-              Icon(Icons.timer, color: Theme.of(context).accentColor),
+              Icon(Icons.people, color: Theme.of(context).accentColor),
               Text(
                 ' 谁要兑换',
                 style: TextStyle(fontWeight: FontWeight.w800),
@@ -95,7 +95,7 @@ class _CoinExchangePageState extends State<CoinExchangePage> {
         children: <Widget>[
           Row(
             children: <Widget>[
-              Icon(Icons.my_location, color: Theme.of(context).accentColor),
+              Icon(Icons.redeem, color: Theme.of(context).accentColor),
               Text(
                 ' 兑换内容',
                 style: TextStyle(fontWeight: FontWeight.w800),
@@ -120,7 +120,7 @@ class _CoinExchangePageState extends State<CoinExchangePage> {
         children: <Widget>[
           Row(
             children: <Widget>[
-              Icon(Icons.my_location, color: Theme.of(context).accentColor),
+              Icon(Icons.monetization_on, color: Theme.of(context).accentColor),
               Text(
                 ' 金币数量',
                 style: TextStyle(fontWeight: FontWeight.w800),
@@ -130,7 +130,7 @@ class _CoinExchangePageState extends State<CoinExchangePage> {
           TextField(
             keyboardType: TextInputType.number,
             controller: _coinsController,
-            decoration: InputDecoration(hintText: '所需要花费的金币个数'),
+            decoration: InputDecoration(hintText: '需要扣除的金币数量'),
             maxLines: 1,
           )
         ],
