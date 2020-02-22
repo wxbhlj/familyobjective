@@ -5,6 +5,7 @@ import 'package:my_family/common/global.dart';
 import 'package:my_family/common/global_event.dart';
 import 'package:my_family/common/http_util.dart';
 import 'package:my_family/common/routers.dart';
+import 'package:my_family/models/member.dart';
 import 'package:my_family/models/objective.dart';
 import 'package:my_family/states/user_model.dart';
 import 'package:my_family/widgets/progress.dart';
@@ -51,13 +52,15 @@ class _ObjectiveListPageState extends State<ObjectiveListPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(10),
+      margin: EdgeInsets.only(left: 20, right: 10, top: 10,bottom: 0),
       child: RefreshIndicator(
         onRefresh: () => _refreshObjectiveList(),
         child: _buildObjectiveList(),
       ),
     );
   }
+
+  
 
   Widget _buildObjectiveList() {
     return ListView.separated(
@@ -102,13 +105,7 @@ class _ObjectiveListPageState extends State<ObjectiveListPage> {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
             ),
           ),
-          /*InkWell(
-            child: Icon(
-              Icons.menu,
-              color: Theme.of(context).accentColor,
-            ),
-            onTap: () {},
-          )*/
+          /*
           Container(
             height: ScreenUtil().setHeight(48),
             child: PopupMenuButton(
@@ -121,7 +118,7 @@ class _ObjectiveListPageState extends State<ObjectiveListPage> {
                           value: "选项一的内容", child: new Text("选项一")),
                       new PopupMenuItem(value: "选项二的内容", child: new Text("选项二"))
                     ]),
-          )
+          )*/
         ],
       ),
     );

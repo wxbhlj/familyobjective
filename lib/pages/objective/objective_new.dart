@@ -39,7 +39,8 @@ class _NewObjectivePageState extends State<NewObjectivePage> {
             _buildInputDays(),
             _buildStartDay(),
             _buildReward(),
-            Center(
+            Container(
+              height: ScreenUtil().setHeight(100),
               child: Text(''),
             )
           ],

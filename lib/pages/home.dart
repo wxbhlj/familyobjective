@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_family/common/global_event.dart';
-import 'package:my_family/common/routers.dart';
-import 'package:my_family/pages/home_function.dart';
+import 'package:my_family/pages/home_family.dart';
+
 import 'package:my_family/pages/home_index.dart';
 import 'package:my_family/pages/home_setting.dart';
 import 'package:my_family/pages/login.dart';
@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    list..add(IndexPage())..add(SettingPage());
+    list..add(IndexPage())..add(FamilyPage())..add(SettingPage());
     _eventSubscription =
         GlobalEventBus().event.on<CommonEventWithType>().listen((event) {
       print("C onEvent:" + event.eventType);
@@ -51,12 +51,12 @@ class _HomePageState extends State<HomePage> {
             ),
             title: Text('目标'),
           ),
-          /*BottomNavigationBarItem(
+          BottomNavigationBarItem(
               icon: Icon(
-                Icons.functions,
+                Icons.monetization_on,
               ),
-              title: Text('功能'),
-              ),*/
+              title: Text('金币'),
+              ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.settings,
@@ -72,20 +72,9 @@ class _HomePageState extends State<HomePage> {
           });
         },
       ),
-      floatingActionButton: _buildFloatingActionButtion(context),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+     
     );
   }
 
-  Widget _buildFloatingActionButtion(context) {
-    return FloatingActionButton(
-      onPressed: () async {
-        //Routers.router.navigateTo(context, Routers.customerTopicNew);
-        Routers.router.navigateTo(context, Routers.newObjectivePage);
-      },
-      //backgroundColor: Colors.green,
-      tooltip: '新建目标',
-      child: Icon(Icons.add),
-    );
-  }
+ 
 }

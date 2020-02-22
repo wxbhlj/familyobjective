@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:my_family/common/cloud_api.dart';
 import 'package:my_family/common/global.dart';
 import 'package:my_family/common/global_event.dart';
 import 'package:my_family/common/http_util.dart';
@@ -42,32 +43,10 @@ class _SettingPageState extends State<SettingPage> {
   }
 
   void _getListMember() {
-    HttpUtil.getInstance()
-        .get("api/v1/ums/family/members/" +
-            Global.profile.user.familyId.toString())
-        .then((val) {
-      if (val['code'] == '10000') {
-        members.clear();
-        List<Member> list = new List<Member>();
-        val['data'].forEach((v) {
-          Member member = Member.fromJson(v);
-          list.add(member);
-          if (member.userId == Global.profile.user.userId) {
-            User user = Global.profile.user;
-            user.nick = member.nick;
-            user.familyRole = member.familyRole;
-            Provider.of<UserModel>(context, listen: false).user = user;
-          }
+    getListMember(context, (){
+      setState(() {
+          members = Provider.of<UserModel>(context, listen: false).members;
         });
-        Provider.of<UserModel>(context, listen: false).members = list;
-
-        setState(() {
-          members = list;
-        });
-      } else {
-        Fluttertoast.showToast(
-            msg: val['message'], gravity: ToastGravity.CENTER);
-      }
     });
   }
 
@@ -109,14 +88,7 @@ class _SettingPageState extends State<SettingPage> {
     );
   }
 
-  Widget _topHeader() {
-    return Container(
-      width: ScreenUtil().setWidth(750),
-      padding: EdgeInsets.all(0),
-      color: Theme.of(context).accentColor,
-      child: Image.asset('images/family.jpg'),
-    );
-  }
+
 
   Widget _themeColor() {
     return Container(
@@ -147,7 +119,7 @@ class _SettingPageState extends State<SettingPage> {
         children: <Widget>[
           Expanded(
             child: Text(
-              '家庭成员:',
+              '成员管理:',
               style: TextStyle(fontSize: 16),
             ),
           ),

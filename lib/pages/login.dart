@@ -3,9 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:my_family/common/global.dart';
 import 'package:my_family/common/http_util.dart';
 import 'package:my_family/common/routers.dart';
 import 'package:my_family/common/utils.dart';
+import 'package:my_family/models/member.dart';
 import 'package:my_family/models/user.dart';
 import 'package:my_family/states/user_model.dart';
 import 'package:provider/provider.dart';
@@ -160,6 +162,14 @@ class _LoginPageState extends State<LoginPage> {
                 .then((val) {
               print(val);
               if (val['code'] == '10000') {
+
+                List<Member> list = new List<Member>();
+                val['data']['familyMembers'].forEach((v) {
+                  Member member = Member.fromJson(v);
+                  list.add(member);
+                });
+                Provider.of<UserModel>(context, listen: false).members = list;
+
                 User user = User.fromJson(val['data']);
                 Provider.of<UserModel>(context, listen: false).user = user;
                 if (user.familyRole == null || user.familyRole.length < 2) {

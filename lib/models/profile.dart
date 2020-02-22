@@ -57,4 +57,15 @@ class Profile {
     }
     return ret;
   }
+
+  Member getMember(int userId) {
+    Member ret = null;
+    for(Member o in members) {
+      if(o.userId == userId) {
+        ret = o;
+        break;
+      }
+    }
+    return ret;
+  }
 }

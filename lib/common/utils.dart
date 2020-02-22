@@ -32,4 +32,13 @@ class Utils {
     });
     return list;
   }
+
+  static String formatDate(int time) {
+    if (time == null) {
+      return "";
+    } else {
+      DateTime date = new DateTime.fromMillisecondsSinceEpoch(time);
+      return "${date.year.toString()}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')} ${date.hour.toString().padLeft(2, '0')}:${date.minute.toString().padLeft(2, '0')}";
+    }
+  }
 }
