@@ -34,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
     ScreenUtil.init(context, width: 750, height: 1334);
     return Scaffold(
         appBar: AppBar(
-          title: Text('登录/注册'),
+          title: Text('登录'),
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -164,7 +164,7 @@ class _LoginPageState extends State<LoginPage> {
       height: ScreenUtil().setHeight(100),
       child: RaisedButton(
         child: Text(
-          '登录/注册',
+          '登录',
           style: TextStyle(color: Colors.white, fontSize: 18),
         ),
         color: Theme.of(context).primaryColor,
