@@ -4,7 +4,9 @@
 
 接触Flutter半年多了，总体感觉不错，容易上手，开发效率比较高。前面也用Flutter写过两个项目，但写的还是有点别别扭扭，离最佳实践比较远。这次目标是有个比较完善的框架，比如加载初始化，http请求统一异常处理，token过期自动返回登录页面，返回刷新，本地缓存等等。还不是很完善，放出来大家一起学习。欢迎提意见。
 
-https://github.com/wxbhlj/familyobjective/blob/master/images/WechatIMG69.jpeg
+![首页](https://github.com/wxbhlj/familyobjective/blob/master/images/WechatIMG69.jpeg)
+![](https://github.com/wxbhlj/familyobjective/blob/master/images/WechatIMG70.jpeg)
+![新建目标](https://github.com/wxbhlj/familyobjective/blob/master/images/WechatIMG71.jpeg)
 
 ## Getting Started
 
